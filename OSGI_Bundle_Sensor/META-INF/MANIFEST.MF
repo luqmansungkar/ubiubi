@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OSGI_Bundle_Sensor
+Bundle-SymbolicName: OSGI_Bundle_Sensor
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: osgi_bundle_sensor.Activator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.osgi.framework;version="1.3.0"

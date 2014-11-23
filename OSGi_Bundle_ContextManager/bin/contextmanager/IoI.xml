@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<jakmania>
+	<itemOfInterest>
+		<name>Kantor Polisi</name>
+		<location>A</location>
+		<information>Kantor polisi yang siap membantu Anda 24 jam sehari.</information>
+		<listOfService>
+			<service>keamanan</service>
+			<service>layanan masyarakat</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Kantor Pemadam Kebakaran</name>
+		<location>B</location>
+		<information>Kantor pemadam kebakaran yang siap siaga 24 jam untuk memadamkan kebakaran.</information>
+		<listOfService>
+			<service>kebakaran</service>
+			<service>layanan masyarakat</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Kantor Balai Kota</name>
+		<location>C</location>
+		<information>Kantor kegiatan administrasi kota.</information>
+		<listOfService>
+			<service>layanan masyarakat</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>ATM Bersama</name>
+		<location>D</location>
+		<information>Uang cash mudah didapatkan dengan ATM bersama.</information>
+		<listOfService>
+			<service>atm</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Kantor Pos</name>
+		<location>H</location>
+		<information>Surat Anda dapat diposkan di sini, secara cepat dan tepat.</information>
+		<listOfService>
+			<service>layanan masyarakat</service>
+			<service>surat</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Kompleks Perumahan</name>
+		<location>I</location>
+		<information>Nikmatnya menghuni rumah di JakMania, rumahnya aman dan sejahtera.</information>
+		<listOfService>
+			<service>hunian</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Mini Market</name>
+		<location>A</location>
+		<information>Mini market tempat membeli segala sesuatu!</information>
+		<listOfService>
+			<service>belanja</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>International School</name>
+		<location>B</location>
+		<information>Sekolah unggulan untuk murid jempolan dengan masa depan rupawan!</information>
+		<listOfService>
+			<service>sekolah</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Jak-PhotoCops</name>
+		<location>C</location>
+		<information>Butuh tempat untuk mengkopi dokumen penting? Jak-PhotoCops solusinya</information>
+		<listOfService>
+			<service>fotokopi</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Jak Swimming Pool</name>
+		<location>D</location>
+		<information>Bugarkan diri Anda dengan berenang!</information>
+		<listOfService>
+			<service>olahraga</service>
+			<service>renang</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Jak Gymnastic</name>
+		<location>E</location>
+		<information>Bugarkan diri Anda dengan aneka kegiatan gymnastik!</information>
+		<listOfService>
+			<service>olahraga</service>
+			<service>gym</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Klinik Jak</name>
+		<location>F</location>
+		<information>Merasa sedikit sakit? Cek kesehatan Anda di klinik Jak!</information>
+		<listOfService>
+			<service>kesehatan</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>JakMania Library</name>
+		<location>G</location>
+		<information>Tempat asyik untuk membaca buku dan menikmati waktu santai</information>
+		<listOfService>
+			<service>buku</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>JakMania Museum</name>
+		<location>H</location>
+		<information>Sejenak mengarungi masa lalu dengan museum yang penuh benda bersejarah.</information>
+		<listOfService>
+			<service>museum</service>
+			<service>hiburan</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Cafe Buku</name>
+		<location>I</location>
+		<information>Membaca buku dengan santai dalam lingkungan cafe yang menyenangkan.</information>
+		<listOfService>
+			<service>restoran</service>
+			<service>buku</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>RS JakMania</name>
+		<location>A</location>
+		<information>Solusi kesehatan yang paling utama. Rumah sakit terlengkap dengan fasilitas super terkini.</information>
+		<listOfService>
+			<service>layanan masyarakat</service>
+			<service>kesehatan</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Kantin OkeJak</name>
+		<location>B</location>
+		<information>Kantin makanan khas kota JakMania dengan harga terjangkau.</information>
+		<listOfService>
+			<service>restoran</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Bioskop OkeJak</name>
+		<location>C</location>
+		<information>Bioskop yang menayangkan film-film terkini dengan ditemani snack dari kafe Jak.</information>
+		<listOfService>
+			<service>restoran</service>
+			<service>hiburan</service>
+			<service>bioskop</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Jak Food Avenue</name>
+		<location>D</location>
+		<information>Kemeriahan pesta kuliner dengan makanan khas dari berbagai penjuru JakMania.</information>
+		<listOfService>
+			<service>restoran</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>JakGym</name>
+		<location>E</location>
+		<information>Manjakan tubuh dengan berolahraga di JakGym, sarana lengkap, harga murah.</information>
+		<listOfService>
+			<service>olahraga</service>
+			<service>gym</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Jak City Hall</name>
+		<location>F</location>
+		<information>Pertunjukan teater terkini dengan bintang bintang internasional.</information>
+		<listOfService>
+			<service>hiburan</service>
+			<service>teater</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Taman Kota Jak</name>
+		<location>G</location>
+		<information>Nikmati pemandangan indah di pinggir pantai dengan restoran yang setia mengenyangkan perut.</information>
+		<listOfService>
+			<service>hiburan</service>
+			<service>restoran</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>BIG Supermarket</name>
+		<location>H</location>
+		<information>Supermarket terlengkap yang telah terkenal di mancanegara.</information>
+		<listOfService>
+			<service>belanja</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Toko Buku SuperSemar</name>
+		<location>I</location>
+		<information>Toko buku serba ada yang akan menyaingi popularitas Gramedia.</information>
+		<listOfService>
+			<service>belanja</service>
+			<service>buku</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Toko Elektronik GreatGatsby</name>
+		<location>A</location>
+		<information>Toko elektronik terlengkap dengan harga bersaing.</information>
+		<listOfService>
+			<service>belanja</service>
+			<service>elektronik</service>
+		</listOfService>
+	</itemOfInterest>
+	<itemOfInterest>
+	<name>Toko Pakaian SIGI</name>
+		<location>B</location>
+		<information>Toko pakaian fashion terkini dengan kiblat Korea Utara.</information>
+		<listOfService>
+			<service>belanja</service>
+			<service>baju</service>
+		</listOfService>
+	</itemOfInterest>
+</jakmania>

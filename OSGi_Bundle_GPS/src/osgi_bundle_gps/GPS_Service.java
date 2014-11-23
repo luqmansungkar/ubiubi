@@ -1,0 +1,126 @@
+package osgi_bundle_gps;
+
+import java.util.Random;
+
+import OSGi_Bundle_ContextManager.ContextManager_Service;
+
+public class GPS_Service extends Thread {
+	private int lokasi;
+	private boolean isUse;
+	private ContextManager_Service CM_Service;
+	
+	public GPS_Service (ContextManager_Service CM_Service_new)
+	{
+		this.CM_Service = CM_Service_new;
+		this.lokasi = 0;
+		this.isUse = true;
+	}
+	
+	/*
+	 * Method ini berfungsi untuk mengembalikan lokasi pengguna menggunakan string
+	 * 
+	 * @return String lokasi
+	 */
+	public String getLokasi()
+	{
+		switch (lokasi) {
+		case 0:
+			return "A";
+			break;
+		case 1:
+			return "B";
+			break;
+		case 2:
+			return "C";
+			break;
+		case 3:
+			return "D";
+			break;
+		case 4:
+			return "E";
+			break;
+		case 5:
+			return "F";
+			break;
+		case 6:
+			return "G";
+			break;
+		case 7:
+			return "H";
+			break;
+		case 8:
+			return "I";
+			break;
+		}
+	}
+
+	/*
+	 * Method ini berfungsi untuk memindahkan lokasi pengguna
+	 */
+	public void PindahLokasi()
+	{
+		Random r = new Random();
+		if(r.nextInt(2)==1)
+		{
+			int random = 0;
+			switch (lokasi) {
+			case 0:
+				lokasi = 1 + r.nextInt(3);
+				break;
+			case 1:
+				random = r.nextInt(5);
+				if(random == 1) lokasi = 2+r.nextInt(3);
+				else if (random == 2) lokasi = 0;
+				else lokasi = random;
+				break;
+			case 2:
+				random = r.nextInt(2);
+				if(random == 0) lokasi = 0;
+				else lokasi = 3;
+				break;
+			case 3:
+				random = r.nextInt(5);
+				if(random == 3) lokasi = random - r.nextInt(3);
+				else lokasi = random;
+				break;
+			case 4:
+				random = r.nextInt(7);
+				if(random == 2 && random == 4)lokasi = r.nextInt(2);
+				else lokasi = random;
+				break;
+			case 5:
+				lokasi = 4+(2*(r.nextInt(3)));
+				break;
+			case 6:
+				random = r.nextInt(3);
+				if(random == 0) lokasi = 4;
+				else if (random == 1) lokasi = 5;
+				else lokasi = 8;
+				break;
+			case 7:
+				lokasi = 4 + (4^(r.nextInt(2)));
+				break;
+			case 8:
+				lokasi = 5 + r.nextInt(3);
+				break;
+			}
+		}
+	}
+	
+	public void run ()
+	{
+		while(isUse && (CM_Service!=null))
+		{
+			PindahLokasi();
+			CM_Service.setLocation(this.getLokasi());
+			
+			try {
+				Thread.sleep(10000)
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+			
+		}
+	}
+}
