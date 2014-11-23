@@ -115,7 +115,7 @@ public class GPS_Service extends Thread {
 			CM_Service.setLocation(this.getLokasi());
 			
 			try {
-				Thread.sleep(10000)
+				Thread.sleep(10000);
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
