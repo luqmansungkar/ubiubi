@@ -23,6 +23,8 @@ public class Activator implements BundleActivator {
 		System.out.println("Mulai broh");
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		
 		System.out.println("masukan anda : "+br.readLine());
 	}
 	
