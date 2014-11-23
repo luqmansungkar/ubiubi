@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 public class ContextManagerService {
 	private ArrayList<ItemOfInterest> iois;
+	private String currentLocation;
 	
 	public ContextManagerService(){
 		iois = new ArrayList<ItemOfInterest>();
@@ -180,11 +181,25 @@ public class ContextManagerService {
 		if (lokasi.equals(tujuan)) {
 			direction += listArah.get(lokasi);
 		}else{
-			direction += listArah.get(lokasi)+" dari lokasi anda sekarang.";
+			direction += listArah.get(tujuan)+" dari lokasi anda sekarang.";
 		}
 		
 		return  direction;
 	}
+
+	
+	public String getCurrentLocation() {
+		return currentLocation;
+	}
+
+	public void setCurrentLocation(String currentLocation) {
+		this.currentLocation = currentLocation;
+	}
+
+	public ArrayList<ItemOfInterest> getIois() {
+		return iois;
+	}
+
 	
 	
 	/*
