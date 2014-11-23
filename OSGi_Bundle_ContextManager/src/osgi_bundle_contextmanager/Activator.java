@@ -1,7 +1,7 @@
 package osgi_bundle_contextmanager;
 
-import java.security.Provider.Service;
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Hashtable;
 
 import org.osgi.framework.BundleActivator;
@@ -22,6 +22,8 @@ public class Activator implements BundleActivator {
 		ServiceRegistration registration = context.registerService(ContextManagerService.class.getName(), contextService, new Hashtable());
 		System.out.println("Mulai broh");
 		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("masukan anda : "+br.readLine());
 	}
 	
 	/*
