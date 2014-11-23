@@ -105,7 +105,7 @@ public class GPS_Service extends Thread {
 		while(isUse && (CM_Service!=null))
 		{
 			PindahLokasi();
-			CM_Service.setLocation(this.getLokasi());
+			CM_Service.(this.getLokasi());
 			
 			try {
 				Thread.sleep(10000);

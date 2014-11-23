@@ -5,5 +5,6 @@ Bundle-SymbolicName: OSGi_Bundle_GPS
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: osgi_bundle_gps.GPS_Activator
 Import-Package: org.osgi.framework;version="1.3.0",
+ org.osgi.util.tracker;version="1.5.1",
  osgi_bundle_contextmanager
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
