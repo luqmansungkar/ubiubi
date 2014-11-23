@@ -1,13 +1,40 @@
 package osgi_bundle_contextmanager;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class ContextManagerService {
 	private ArrayList<ItemOfInterest> iois;
 	
 	public ContextManagerService(){
-		
+		iois = new ArrayList<ItemOfInterest>();
+		BufferedReader br = null;
+		String json = "";
+		try {
+			br = new BufferedReader(new FileReader("file/tes.json"));
+			json = br.readLine();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		JSONObject obj = new JSONObject(json);
+		JSONArray arr = obj.getJSONObject("jakmania").getJSONArray("itemOfInterest");
+		for (int i = 0; i < arr.length(); i++) {
+			JSONObject objek = arr.getJSONObject(i);
+			//System.out.println(arr.getJSONObject(i).getString("name"));
+			ArrayList<String> services = new ArrayList<String>();
+			//System.out.println(objek.getJSONObject("listOfService").get("service"));
+			JSONArray array = objek.getJSONObject("listOfService").getJSONArray("service");
+			for (int j = 0; j < array.length(); j++) {
+				services.add((String) array.get(j));
+			}
+			iois.add(new ItemOfInterest(objek.getString("name"), objek.getString("location"), objek.getString("information"), services));
+		}
 	}
 	
 	public ArrayList<String> getItemOfInterest(String kota){
@@ -31,6 +58,14 @@ public class ContextManagerService {
 		}
 		
 		return info;
+	}
+	
+	public ArrayList<String> getAllItemOfInterest(){
+		ArrayList<String> hasil = new ArrayList<String>();
+		for (int i = 0; i < iois.size(); i++) {
+			hasil.add(iois.get(i).getNama());
+		}
+		return hasil;
 	}
 	
 	public String getArah(String lokasi, String tujuan){
@@ -164,5 +199,7 @@ public class ContextManagerService {
 	 * --getDetailIoi(name){ret information}
 	 * 
 	 * --getArah(lokasi){ret nama ada di mana}
+	 * 
+	 * set lokasis
 	 */
 }
