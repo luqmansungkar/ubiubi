@@ -1,15 +1,16 @@
 package osgi_bundle_gps;
 
+import java.util.ArrayList;
 import java.util.Random;
 
-import OSGi_Bundle_ContextManager.ContextManager_Service;
+import osgi_bundle_contextmanager.ContextManagerService;
 
 public class GPS_Service extends Thread {
 	private int lokasi;
 	private boolean isUse;
-	private ContextManager_Service CM_Service;
+	private ContextManagerService CM_Service;
 	
-	public GPS_Service (ContextManager_Service CM_Service_new)
+	public GPS_Service (ContextManagerService CM_Service_new)
 	{
 		this.CM_Service = CM_Service_new;
 		this.lokasi = 0;
@@ -26,32 +27,24 @@ public class GPS_Service extends Thread {
 		switch (lokasi) {
 		case 0:
 			return "A";
-			break;
 		case 1:
 			return "B";
-			break;
 		case 2:
 			return "C";
-			break;
 		case 3:
 			return "D";
-			break;
 		case 4:
-			return "E";
-			break;
+			return "E";			
 		case 5:
 			return "F";
-			break;
 		case 6:
 			return "G";
-			break;
 		case 7:
 			return "H";
-			break;
 		case 8:
 			return "I";
-			break;
 		}
+		return "Tidak ada di lokasi";
 	}
 
 	/*
@@ -112,7 +105,7 @@ public class GPS_Service extends Thread {
 		while(isUse && (CM_Service!=null))
 		{
 			PindahLokasi();
-			CM_Service.setLocation(this.getLokasi());
+			CM_Service.(this.getLokasi());
 			
 			try {
 				Thread.sleep(10000);
@@ -123,4 +116,12 @@ public class GPS_Service extends Thread {
 			
 		}
 	}
+	
+	public ArrayList<String> getTempatMenarikAll (String lokasi)
+	{
+		ArrayList<String> tempatMenarik = new ArrayList<String>();
+		tempatMenarik = CM_Service.getItemOfInterest(lokasi);
+		return tempatMenarik;
+	}
+	
 }
