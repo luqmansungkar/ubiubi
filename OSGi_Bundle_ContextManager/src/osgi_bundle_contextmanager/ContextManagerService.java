@@ -1,4 +1,4 @@
-package contextmanager;
+package osgi_bundle_contextmanager;
 
 import java.util.ArrayList;
 import java.util.HashMap;

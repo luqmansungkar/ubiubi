@@ -1,4 +1,4 @@
-package contextmanager;
+package osgi_bundle_contextmanager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
