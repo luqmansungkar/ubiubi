@@ -105,7 +105,7 @@ public class GPS_Service extends Thread {
 		while(isUse && (CM_Service!=null))
 		{
 			PindahLokasi();
-			CM_Service.(this.getLokasi());
+			CM_Service.setCurrentLocation(this.getLokasi());
 			
 			try {
 				Thread.sleep(10000);
@@ -117,11 +117,14 @@ public class GPS_Service extends Thread {
 		}
 	}
 	
-	public ArrayList<String> getTempatMenarikAll (String lokasi)
+	public void printTempatMenarikAll()
 	{
 		ArrayList<String> tempatMenarik = new ArrayList<String>();
-		tempatMenarik = CM_Service.getItemOfInterest(lokasi);
-		return tempatMenarik;
+		tempatMenarik = CM_Service.getAllItemOfInterest();
+		for(int ii=0;ii<tempatMenarik.size();ii++)
+		{
+			System.out.println(tempatMenarik.get(ii));
+		}
 	}
 	
 }
