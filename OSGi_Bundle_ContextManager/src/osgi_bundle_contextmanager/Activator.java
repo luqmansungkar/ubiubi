@@ -20,12 +20,12 @@ public class Activator implements BundleActivator {
 		//this.context = context;
 		ContextManagerService contextService = new ContextManagerService();
 		ServiceRegistration registration = context.registerService(ContextManagerService.class.getName(), contextService, new Hashtable());
-		System.out.println("Mulai broh");
+		System.out.println("Mulai Context Manager");
 		
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		
-		System.out.println("masukan anda : "+br.readLine());
+		//System.out.println("masukan anda : "+br.readLine());
 	}
 	
 	/*

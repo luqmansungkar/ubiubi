@@ -14,7 +14,8 @@ public class ContextManagerService {
 	private String temperatur = "";
 	private String cuaca = "";
 	private String waktu = "";
-	
+	private String user = "";
+	private String saran = "";
 	
 	
 	public ContextManagerService(){
@@ -198,6 +199,7 @@ public class ContextManagerService {
 	}
 
 	public void setCurrentLocation(String currentLocation) {
+		System.out.println("Curloc : "+currentLocation);
 		this.currentLocation = currentLocation;
 	}
 	
@@ -206,6 +208,7 @@ public class ContextManagerService {
 	}
 
 	public void setCuaca(String cuaca) {
+		System.out.println("cuaca : "+cuaca);
 		this.cuaca = cuaca;
 	}
 
@@ -218,6 +221,7 @@ public class ContextManagerService {
 	}
 
 	public void setTemperatur(String temperatur) {
+		System.out.println("temp : "+temperatur);
 		this.temperatur = temperatur;
 	}
 
@@ -226,7 +230,24 @@ public class ContextManagerService {
 	}
 
 	public void setWaktu(String waktu) {
+		System.out.println("waktu : "+waktu);
 		this.waktu = waktu;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getSaran() {
+		return saran;
+	}
+
+	public void setSaran(String saran) {
+		this.saran = saran;
 	}
 
 	
@@ -234,7 +255,7 @@ public class ContextManagerService {
 	/*
 	 * mengirim saran ke gps(user pref) sx: jika context sarankan service
 	 * 
-	 * memanggil prefRepository(username, waktu, cuaca, temp, lokasi){
+	 * --memanggil prefRepository(username, waktu, cuaca, temp, lokasi){
 	 *   return (daftar services <-> lokasi sekarang)
 	 * }
 	 * 

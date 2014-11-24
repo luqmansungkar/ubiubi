@@ -1,0 +1,49 @@
+name: Izza
+pref-1: jika 25 sarankan renang
+pref-2: jika hujan sarankan hunian
+pref-3: jika 12:00 sarankan restoran
+
+name: Bela
+pref-1: jika 27 sarankan renang
+pref-2: jika cerah sarankan teater
+pref-3: jika 16:00 sarankan gym
+
+name: Luqman
+pref-1: jika 20 sarankan buku
+pref-2: jika berawan sarankan kesehatan
+pref-3: jika 10:00 sarankan belanja
+
+name: Judin
+pref-1: jika 23 sarankan museum
+pref-2: jika berawan sarankan layanan masyarakat
+pref-3: jika 08:00 sarankan sekolah
+
+name: Sungkar
+pref-1: jika 29 sarankan restoran
+pref-2: jika cerah sarankan olahraga
+pref-3: jika 21:00 sarankan hunian
+
+name: Syahidah
+pref-1: jika 24 sarankan elektronik
+pref-2: jika hujan sarankan restoran
+pref-3: jika 13:00 sarankan bioskop
+
+name: Abdullah
+pref-1: jika 28 sarankan museum museum
+pref-2: jika cerah sarankan fotocopy
+pref-3: jika 07:00 sarankan sekolah
+
+name: Fajri
+pref-1: jika 21 sarankan buku
+pref-2: jika cerah sarankan layanan masyarakat
+pref-3: jika 22:00 sarankan atm
+
+name: Rufaida
+pref-1: jika 23 sarankan olahraga
+pref-2: jika berawan sarankan buku
+pref-3: jika 11:00 sarankan elektronik
+
+name: Asroria
+pref-1: jika 27 sarankan museum
+pref-2: jika hujan sarankan layanan masyarakat
+pref-3: jika 08:00 sarankan sekolah

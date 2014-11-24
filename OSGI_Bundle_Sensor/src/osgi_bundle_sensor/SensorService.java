@@ -13,11 +13,17 @@ public class SensorService {
 	private Random randomGenerator = new Random();
 	private Timer timer;
 	
-	public SensorService(ContextManagerService newContextManagerService){
-		timer = new Timer();
-		this.contextManagerService = newContextManagerService;
-	}
+//	public SensorService(ContextManagerService newContextManagerService){
+//		
+//	}
 	
+	public SensorService(ContextManagerService cms) {
+		// TODO Auto-generated constructor stub
+		timer = new Timer();
+		this.contextManagerService = cms;
+		run();
+	}
+
 	public void run(){
 		timer.schedule(new TimerTask(){
 			public void run() {
@@ -25,7 +31,7 @@ public class SensorService {
 				contextManagerService.setWaktu(getTime());
 				contextManagerService.setCuaca(getCuaca());
 			}
-		},0,120000);
+		},0,60000);
 	}
 	
 	private String getTemperature() {
