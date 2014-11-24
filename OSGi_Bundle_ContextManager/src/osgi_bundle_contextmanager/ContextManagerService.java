@@ -200,6 +200,14 @@ public class ContextManagerService {
 	public void setCurrentLocation(String currentLocation) {
 		this.currentLocation = currentLocation;
 	}
+	
+	public String getCuaca() {
+		return cuaca;
+	}
+
+	public void setCuaca(String cuaca) {
+		this.cuaca = cuaca;
+	}
 
 	public ArrayList<ItemOfInterest> getIois() {
 		return iois;

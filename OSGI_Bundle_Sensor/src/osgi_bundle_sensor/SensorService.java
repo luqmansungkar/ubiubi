@@ -5,29 +5,31 @@ import java.util.Calendar;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import osgi_bundle_contextmanager.ContextManagerService;
 
 public class SensorService {
 
+	private ContextManagerService contextManagerService;
 	private Random randomGenerator = new Random();
 	private Timer timer;
 	
-	public SensorService(){
+	public SensorService(ContextManagerService newContextManagerService){
 		timer = new Timer();
+		this.contextManagerService = newContextManagerService;
 	}
 	
 	public void run(){
 		timer.schedule(new TimerTask(){
 			public void run() {
-				System.out.println("Hello World!!");
-				System.out.println("temperature "+getTemperature());
-				System.out.println("cuaca "+getCuaca());
-				System.out.println("Time "+getTime());
+				contextManagerService.setTemperatur(getTemperature());
+				contextManagerService.setWaktu(getTime());
+				contextManagerService.setCuaca(getCuaca());
 			}
 		},0,120000);
 	}
 	
-	private int getTemperature() {
-		return randomGenerator.nextInt(30);
+	private String getTemperature() {
+		return Integer.toString(randomGenerator.nextInt(30));
 	}
 	
 	private String getCuaca() {
