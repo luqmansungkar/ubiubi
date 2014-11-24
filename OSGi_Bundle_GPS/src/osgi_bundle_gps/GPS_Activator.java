@@ -22,23 +22,57 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 public class GPS_Activator implements BundleActivator {
 	private GPS_Service gps_service;
 	private BufferedReader bf;
-	private static BundleContext konteks;	
-	
+	private static BundleContext konteks;
+	private ServiceTracker tracker;
+	private ServiceTrackerCustomizer customTracker = new ServiceTrackerCustomizer() {
+		@Override
+		public Object addingService(ServiceReference reference) {
+			// TODO Auto-generated method stub
+			ContextManagerService cm_service = (ContextManagerService) konteks.getService(reference);
+			if(gps_service == null)
+			{
+				gps_service = new GPS_Service(cm_service);
+				return cm_service;
+			}
+			else
+			{
+				return cm_service;
+			}
+		}
+
+		@Override
+		public void modifiedService(ServiceReference reference, Object object) {
+			// TODO Auto-generated method stub
+			gps_service.stop();
+			try {
+				gps_service.join();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			ContextManagerService cm_service = (ContextManagerService) konteks.getService(reference);
+			
+			gps_service = new GPS_Service(cm_service);
+			gps_service.start();
+		}
+
+		@Override
+		public void removedService(ServiceReference arg0, Object arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+	};
 	/*
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
-		GPS_Activator.konteks = context;
+		konteks = context;
 		ContextManagerService cm_service = new ContextManagerService();
-		if(gps_service==null)
-		{
-			gps_service = new GPS_Service(cm_service);
-		}
-		else if(gps_service!=null)
+		tracker = new ServiceTracker<>(context, ContextManagerService.class.getName(), customTracker);
+		tracker.open();
+		if(gps_service!=null)
 		{
 			ServiceRegistration registration = konteks.registerService(GPS_Service.class.getName(), gps_service, new Hashtable());
-			System.out.println("Servis sudah didaftarkan");
 		}
 		
 		bf = new BufferedReader(new InputStreamReader(System.in));
@@ -63,7 +97,6 @@ public class GPS_Activator implements BundleActivator {
 	
 	public void eksekusiPilihan(int pilihan)
 	{
-		System.out.println("jaa");
 		switch (pilihan) {
 		case 1:
 			gps_service.printTempatMenarikAll();
@@ -86,6 +119,7 @@ public class GPS_Activator implements BundleActivator {
 			} catch (Exception e) {
 				
 			}
+			System.out.println(gps_service.getLokasi()+" "+kotaPilihan);
 			gps_service.printPetunjukArah(gps_service.getLokasi(),kotaPilihan);
 			break;
 		}
