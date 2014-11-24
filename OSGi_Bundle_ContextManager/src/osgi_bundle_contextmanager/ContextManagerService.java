@@ -10,7 +10,12 @@ import org.json.JSONObject;
 
 public class ContextManagerService {
 	private ArrayList<ItemOfInterest> iois;
-	private String currentLocation;
+	private String currentLocation = "";
+	private String temperatur = "";
+	private String cuaca = "";
+	private String waktu = "";
+	
+	
 	
 	public ContextManagerService(){
 		iois = new ArrayList<ItemOfInterest>();
@@ -198,6 +203,22 @@ public class ContextManagerService {
 
 	public ArrayList<ItemOfInterest> getIois() {
 		return iois;
+	}
+
+	public String getTemperatur() {
+		return temperatur;
+	}
+
+	public void setTemperatur(String temperatur) {
+		this.temperatur = temperatur;
+	}
+
+	public String getWaktu() {
+		return waktu;
+	}
+
+	public void setWaktu(String waktu) {
+		this.waktu = waktu;
 	}
 
 	
