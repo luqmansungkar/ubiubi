@@ -1,9 +1,9 @@
 package osgi_bundle_gps;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
-import gui.UIHalamanLogin;
 import osgi_bundle_contextmanager.ContextManagerService;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
@@ -21,43 +21,8 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  */
 public class GPS_Activator implements BundleActivator {
 	private GPS_Service gps_service;
-	private static BundleContext konteks;
-	private UIHalamanLogin lamanLoginUI;
-//	private ServiceTrackerCustomizer customTracker = new ServiceTrackerCustomizer(){
-//		@Override
-//		public Object addingService(ServiceReference reference)
-//		{
-//			ContextManagerService CM_Service = (ContextManagerService) konteks.getService(reference);
-//			if(gps_service == null)
-//			{
-//				gps_service = new GPS_Service(CM_Service);
-//				if(lamanLoginUI == null)
-//				{
-//					lamanLoginUI = new UIHalamanLogin(CM_Service, gps_service);
-//					lamanLoginUI.setVisible(true);
-//				}
-//				gps_service.start();
-//				return CM_Service;
-//			}
-//			else
-//			{
-//				return CM_Service;
-//			}
-//		}
-//		
-//		@Override
-//		public void modifiedService(ServiceReference reference, Object service)
-//		{
-//			gps_service.stop();
-//			
-//		}
-//
-//		@Override
-//		public void removedService(ServiceReference reference, Object service) {
-//			// TODO Auto-generated method stub
-//			
-//		}
-//	};
+	private BufferedReader bf;
+	private static BundleContext konteks;	
 	
 	/*
 	 * (non-Javadoc)
@@ -76,7 +41,7 @@ public class GPS_Activator implements BundleActivator {
 			System.out.println("Servis sudah didaftarkan");
 		}
 		
-		BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+		bf = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Selamat Datang");
 		System.out.println("Apa yang bisa kami bantu?");
 		System.out.println("1. Informasi Tempat Menarik");
@@ -104,10 +69,24 @@ public class GPS_Activator implements BundleActivator {
 			gps_service.printTempatMenarikAll();
 			break;
 		case 2:
-			
+			gps_service.printTempatMenarikByLokasi(gps_service.getLokasi());
 			break;
 		case 3:
-			
+			System.out.println("Saat ini, Anda sedang berada di kota "+ gps_service.getLokasi());
+			System.out.println("Pilih kota tujuan Anda sekarang");
+			for(int ii = 0; ii< 9; ii++)
+			{
+				if(((char)(65+ii))!= (gps_service.getLokasi().charAt(0))) 
+					System.out.println((char)(65+ii));
+			}
+			String kotaPilihan = null;
+			try {
+				System.out.print("Tulis Kota Tujuan Anda: ");
+				kotaPilihan = bf.readLine();
+			} catch (Exception e) {
+				
+			}
+			gps_service.printPetunjukArah(gps_service.getLokasi(),kotaPilihan);
 			break;
 		}
 	}

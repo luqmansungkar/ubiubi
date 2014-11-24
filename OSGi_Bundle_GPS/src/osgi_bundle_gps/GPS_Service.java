@@ -123,8 +123,23 @@ public class GPS_Service extends Thread {
 		tempatMenarik = CM_Service.getAllItemOfInterest();
 		for(int ii=0;ii<tempatMenarik.size();ii++)
 		{
-			System.out.println(tempatMenarik.get(ii));
+			System.out.println(ii+". "+ tempatMenarik.get(ii));
 		}
 	}
 	
+	public void printTempatMenarikByLokasi(String lokasi)
+	{
+		ArrayList<String> tempatMenarik = new ArrayList<String>();
+		tempatMenarik = CM_Service.getItemOfInterest(lokasi);
+		for(int ii=0;ii<tempatMenarik.size();ii++)
+		{
+			System.out.println(ii+". "+ tempatMenarik.get(ii));
+		}
+	}
+	
+	public void printPetunjukArah(String lokasi, String tujuan)
+	{
+		String petunjukArah = CM_Service.getArah(lokasi, tujuan);
+		System.out.println(petunjukArah);
+	}
 }
