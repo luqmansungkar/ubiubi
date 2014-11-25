@@ -16,6 +16,7 @@ public class GPS_Service extends Thread {
 		this.lokasi = 3;
 		this.isUse = true;
 		CM_Service.setCurrentLocation(this.getLokasi());
+		//run();
 	}
 	
 	/*

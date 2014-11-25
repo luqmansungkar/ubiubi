@@ -31,7 +31,7 @@ public class SensorService {
 				contextManagerService.setWaktu(getTime());
 				contextManagerService.setCuaca(getCuaca());
 			}
-		},0,60000);
+		},0,10000);
 	}
 	
 	private String getTemperature() {

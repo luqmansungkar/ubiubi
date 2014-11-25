@@ -22,14 +22,12 @@ public class LoginPageUI extends JFrame{
 	private JButton daftarTombol;
 	private JComboBox<String> user;
 	private ContextManagerService cms;
-	private GPS_Service gps;
 	
 	private MainPageUI mainPUI;
 //	public LoginPageUI(ContextManagerService cm_service, GPS_Service gps_service)
 	public LoginPageUI(final ContextManagerService cms)
 	{
 		this.cms = cms;
-		this.gps = gps;
 		setTitle("Halaman Login");
 		setBounds(100, 100, 500, 500);
 		panelUtama = new JPanel();
@@ -78,12 +76,6 @@ public class LoginPageUI extends JFrame{
 	}
 	public void setCms(ContextManagerService cms) {
 		this.cms = cms;
-	}
-	public GPS_Service getGps() {
-		return gps;
-	}
-	public void setGps(GPS_Service gps) {
-		this.gps = gps;
 	}
 	
 	

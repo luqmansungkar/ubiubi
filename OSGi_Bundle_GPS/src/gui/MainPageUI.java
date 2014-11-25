@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +16,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import osgi_bundle_contextmanager.ContextManagerService;
-import osgi_bundle_gps.GPS_Service;
 
 public class MainPageUI extends JFrame{
 	private MapPageUI mpUI;
@@ -41,9 +43,14 @@ public class MainPageUI extends JFrame{
 	private JComboBox<String> saranCB;
 	private String[] pilSaran;
 	private JButton detil;
+	private ContextManagerService cms;
+	
+	private Timer timer;
 	
 	public MainPageUI(final String namaU, final ContextManagerService cms)
 	{
+		this.cms = cms;
+		timer = new Timer();
 		this.namaU = namaU;
 		setTitle("Tour Guide");
 		setBounds(100, 100, 500, 500);
@@ -77,6 +84,7 @@ public class MainPageUI extends JFrame{
 		suhuTF = new JTextField();
 		suhuTF.setBounds(100, 240, 75, 75);
 		suhuTF.setEditable(false);
+		suhuTF.setText(cms.getTemperatur());
 		panelUtama.add(suhuTF);
 		
 		cuacaLL = new JLabel("Cuaca");
@@ -97,6 +105,7 @@ public class MainPageUI extends JFrame{
 		jamTF = new JTextField();
 		jamTF.setBounds(325, 240, 75, 75);
 		jamTF.setEditable(false);
+		jamTF.setText(cms.getWaktu());
 		panelUtama.add(jamTF);
 		
 		petaB = new JButton("Peta");
@@ -120,13 +129,34 @@ public class MainPageUI extends JFrame{
 		saranL.setBounds(25, 350, 100, 25);
 		panelUtama.add(saranL);
 		
-		pilSaran = new String[]{"Pemadam", "Musholla"};
-		saranCB = new JComboBox<String>(pilSaran);
+		ArrayList<String> tempat = cms.getItemOfInterest(cms.getCurrentLocation());
+		String[] pilTempatMenarik2 = new String[tempat.size()];
+		pilTempatMenarik2 = tempat.toArray(pilTempatMenarik2);
+		
+		
+		//pilSaran = new String[]{"Pemadam", "Musholla"};
+		saranCB = new JComboBox<String>(pilTempatMenarik2);
 		saranCB.setBounds(125, 350, 200, 25);
 		panelUtama.add(saranCB);
 		
 		detil = new JButton("Lihat");
 		detil.setBounds(350, 350, 100, 25);
 		panelUtama.add(detil);
+		//run();
 	}
+	
+	public void run(){
+		timer.schedule(new TimerTask(){
+			public void run() {
+				suhuTF.setText(cms.getTemperatur());
+				jamTF.setText(cms.getWaktu());
+				
+				ArrayList<String> tempat = cms.getItemOfInterest(cms.getCurrentLocation());
+				String[] pilTempatMenarik2 = new String[tempat.size()];
+				pilTempatMenarik2 = tempat.toArray(pilTempatMenarik2);
+				saranCB = new JComboBox<String>(pilTempatMenarik2);
+			}
+		},0,10000);
+	}
+
 }
