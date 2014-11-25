@@ -94,7 +94,7 @@ public class GPS_Activator implements BundleActivator {
 		int pilihan = Integer.parseInt(bf.readLine());
 		eksekusiPilihan(pilihan);*/
 
-		JFrame layar = new LoginPageUI(cms, gps_service);
+		JFrame layar = new LoginPageUI(cms);
 		layar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 layar.setResizable(false);
 		layar.setVisible(true);
