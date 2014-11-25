@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import osgi_bundle_contextmanager.ContextManagerService;
+import osgi_bundle_gps.GPS_Service;
+
 public class MainPageUI extends JFrame{
 	private MapPageUI mpUI;
 	private JPanel panelUtama;
@@ -39,7 +42,7 @@ public class MainPageUI extends JFrame{
 	private String[] pilSaran;
 	private JButton detil;
 	
-	public MainPageUI(String namaU)
+	public MainPageUI(String namaU, ContextManagerService cms, GPS_Service gps)
 	{
 		this.namaU = namaU;
 		setTitle("Tour Guide");
@@ -57,7 +60,8 @@ public class MainPageUI extends JFrame{
 		namaL.setBounds(25, 100, 100, 25);
 		panelUtama.add(namaL);
 		
-		lokasiU = "A";
+		lokasiU = cms.getCurrentLocation();
+		
 		lokasiL = new JLabel("Anda lagi ada di kota " + lokasiU);
 		lokasiL.setBounds(25, 125, 150, 25);
 		panelUtama.add(lokasiL);
@@ -104,7 +108,7 @@ public class MainPageUI extends JFrame{
 				// TODO Auto-generated method stub
 				if(mpUI == null)
 				{
-					mpUI = new MapPageUI();
+					mpUI = new MapPageUI(cms, namaU);
 					mpUI.setVisible(true);
 				}
 				dispose();

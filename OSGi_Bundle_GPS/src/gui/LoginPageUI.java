@@ -21,11 +21,15 @@ public class LoginPageUI extends JFrame{
 	private JButton masukTombol;
 	private JButton daftarTombol;
 	private JComboBox<String> user;
+	private ContextManagerService cms;
+	private GPS_Service gps;
 	
 	private MainPageUI mainPUI;
 //	public LoginPageUI(ContextManagerService cm_service, GPS_Service gps_service)
-	public LoginPageUI()
+	public LoginPageUI(final ContextManagerService cms, final GPS_Service gps)
 	{
+		this.cms = cms;
+		this.gps = gps;
 		setTitle("Halaman Login");
 		setBounds(100, 100, 500, 500);
 		panelUtama = new JPanel();
@@ -43,6 +47,7 @@ public class LoginPageUI extends JFrame{
 		
 		masukTombol = new JButton("Masuk");
 		masukTombol.setBounds(185,185,100,25);
+		
 		masukTombol.addActionListener(new ActionListener() {
 			
 			@Override
@@ -50,7 +55,8 @@ public class LoginPageUI extends JFrame{
 				// TODO Auto-generated method stub
 				if(mainPUI == null)
 				{
-					mainPUI = new MainPageUI(user.getSelectedItem().toString());
+					
+					mainPUI = new MainPageUI(user.getSelectedItem().toString(), cms, gps);
 					mainPUI.setVisible(true);
 				}
 				dispose();
@@ -67,4 +73,18 @@ public class LoginPageUI extends JFrame{
 		user.setBounds(165, 150, 150, 30);
 		panelUtama.add(user);
 	}
+	public ContextManagerService getCms() {
+		return cms;
+	}
+	public void setCms(ContextManagerService cms) {
+		this.cms = cms;
+	}
+	public GPS_Service getGps() {
+		return gps;
+	}
+	public void setGps(GPS_Service gps) {
+		this.gps = gps;
+	}
+	
+	
 }

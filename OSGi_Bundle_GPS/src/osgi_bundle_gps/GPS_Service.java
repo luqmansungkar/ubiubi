@@ -13,8 +13,9 @@ public class GPS_Service extends Thread {
 	public GPS_Service (ContextManagerService CM_Service_new)
 	{
 		this.CM_Service = CM_Service_new;
-		this.lokasi = 0;
+		this.lokasi = 3;
 		this.isUse = true;
+		CM_Service.setCurrentLocation(this.getLokasi());
 	}
 	
 	/*
