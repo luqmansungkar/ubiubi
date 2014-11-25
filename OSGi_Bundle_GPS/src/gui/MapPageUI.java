@@ -3,6 +3,7 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.StreamCorruptedException;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -12,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import osgi_bundle_contextmanager.ContextManagerService;
+import osgi_bundle_gps.GPS_Service;
 
 public class MapPageUI extends JFrame{
 	private JPanel panelUtama;
@@ -31,13 +33,19 @@ public class MapPageUI extends JFrame{
 	
 	private JTextField deskripsiTF;
 	private JComboBox<String> tempatMenarikCB;
-	private String[] pilTempatMenarik;
+//	private String[] pilTempatMenarik;
+	private ArrayList<String> pilTempatMenarik;
 	private MainPageUI mainPUI;
 	
-	ContextManagerService cm_service;
-	public MapPageUI()
+	public MapPageUI(ContextManagerService cm_service, String namaU)
 	{
-		pilTempatMenarik = new String[]{"Toko Kelontong", "Toko Lontong Sayur", "Menoy Berisik"};
+		pilTempatMenarik = cm_service.getAllItemOfInterest();
+		String[] pilTempatMenarik2 = new String[pilTempatMenarik.size()];
+		pilTempatMenarik2 = pilTempatMenarik.toArray(pilTempatMenarik2);
+		tempatMenarikCB = new JComboBox<String>(pilTempatMenarik2);
+		
+		tempatMenarikCB.setBounds(50,300,300,25);
+		panelUtama.add(tempatMenarikCB);
 		
 		setTitle("Peta Kota Jakmania");
 		setBounds(100, 100, 500, 500);
@@ -104,15 +112,13 @@ public class MapPageUI extends JFrame{
 		panelUtama.add(iKota);
 		
 		cari = new JButton("Lihat");
-		cari.setBounds(325, 300, 100, 25);
+		cari.setBounds(350, 300, 100, 25);
 		panelUtama.add(cari);
 		
-		tempatMenarikCB = new JComboBox<String>(pilTempatMenarik);
-		tempatMenarikCB.setBounds(50,300,300,25);
-		panelUtama.add(tempatMenarikCB);
+		
 		
 		deskripsiTF = new JTextField("haha");
-		deskripsiTF.setBounds(50, 350, 375, 50);
+		deskripsiTF.setBounds(50, 350, 400, 50);
 		deskripsiTF.setEditable(false);
 		panelUtama.add(deskripsiTF);
 	}
