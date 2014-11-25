@@ -24,58 +24,61 @@ public class GPS_Activator implements BundleActivator {
 	private BufferedReader bf;
 	private static BundleContext konteks;
 	private ServiceTracker tracker;
-	private ServiceTrackerCustomizer customTracker = new ServiceTrackerCustomizer() {
-		@Override
-		public Object addingService(ServiceReference reference) {
-			// TODO Auto-generated method stub
-			ContextManagerService cm_service = (ContextManagerService) konteks.getService(reference);
-			if(gps_service == null)
-			{
-				gps_service = new GPS_Service(cm_service);
-				return cm_service;
-			}
-			else
-			{
-				return cm_service;
-			}
-		}
-
-		@Override
-		public void modifiedService(ServiceReference reference, Object object) {
-			// TODO Auto-generated method stub
-			gps_service.stop();
-			try {
-				gps_service.join();
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			ContextManagerService cm_service = (ContextManagerService) konteks.getService(reference);
-			
-			gps_service = new GPS_Service(cm_service);
-			gps_service.start();
-		}
-
-		@Override
-		public void removedService(ServiceReference arg0, Object arg1) {
-			// TODO Auto-generated method stub
-			
-		}
-	};
+	private ServiceTrackerCustomizer customTracker;
 	/*
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
 		konteks = context;
-		ContextManagerService cm_service = new ContextManagerService();
-		tracker = new ServiceTracker<>(context, ContextManagerService.class.getName(), customTracker);
-		tracker.open();
+		
+		customTracker = new ServiceTrackerCustomizer() {
+			@Override
+			public Object addingService(ServiceReference reference) {
+				// TODO Auto-generated method stub
+				ContextManagerService cm_service = (ContextManagerService) konteks.getService(reference);
+				if(gps_service == null)
+				{
+					gps_service = new GPS_Service(cm_service);
+					return cm_service;
+				}
+				else
+				{
+					return cm_service;
+				}
+			}
+
+			@Override
+			public void modifiedService(ServiceReference reference, Object object) {
+				// TODO Auto-generated method stub
+				gps_service.stop();
+				try {
+					gps_service.join();
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				ContextManagerService cm_service = (ContextManagerService) konteks.getService(reference);
+				
+				gps_service = new GPS_Service(cm_service);
+				gps_service.start();
+			}
+
+			@Override
+			public void removedService(ServiceReference arg0, Object arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
 		if(gps_service!=null)
 		{
 			ServiceRegistration registration = konteks.registerService(GPS_Service.class.getName(), gps_service, new Hashtable());
 		}
 		
-		bf = new BufferedReader(new InputStreamReader(System.in));
+		tracker = new ServiceTracker(context, ContextManagerService.class.getName(), customTracker);
+		tracker.open();
+		
+		/*bf = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Selamat Datang");
 		System.out.println("Apa yang bisa kami bantu?");
 		System.out.println("1. Informasi Tempat Menarik");
@@ -83,7 +86,8 @@ public class GPS_Activator implements BundleActivator {
 		System.out.println("3. Petunjuk Arah ke Tempat Tujuan Anda");
 		System.out.println("Exit");
 		int pilihan = Integer.parseInt(bf.readLine());
-		eksekusiPilihan(pilihan);
+		eksekusiPilihan(pilihan);*/
+		gps_service.printTempatMenarikAll();
 	}
 	
 	/*

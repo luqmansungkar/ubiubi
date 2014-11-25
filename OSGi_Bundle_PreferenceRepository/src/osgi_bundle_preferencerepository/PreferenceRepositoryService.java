@@ -5,12 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
-import osgi_bundle_contextmanager.ContextManagerService;
 public class PreferenceRepositoryService {
 	File fi;
 	BufferedReader br;
 	Vector<EntryPreference> ep;
-	ContextManagerService cms;
 	
 	public PreferenceRepositoryService(){
 		loadPreferenceDatabase();

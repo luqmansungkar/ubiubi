@@ -16,7 +16,7 @@ public class Activator implements BundleActivator {
 		PreferenceRepositoryService prs = new PreferenceRepositoryService();
 		ServiceRegistration registration = context.registerService(PreferenceRepositoryService.class.getName(), prs, new Hashtable());
 		System.out.println("Jalankan Preference Repository");
-		System.out.println(prs.getPreference("Izza, hujan, 12:00, 25, A"));
+		System.out.println(prs.getPreference("Izza,25,hujan,12:00"));
 	}
 	
 	/*

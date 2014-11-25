@@ -6,26 +6,27 @@ import java.util.Hashtable;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
+
+import osgi_bundle_preferencerepository.PreferenceRepositoryService;
 
 public class Activator implements BundleActivator {
 
 	private static BundleContext context;
+	private PreferenceRepositoryService prefRepo;
 	/*
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
 		
-		//this.context = context;
-		ContextManagerService contextService = new ContextManagerService();
+		ServiceReference ref = context.getServiceReference(PreferenceRepositoryService.class.getName());
+		prefRepo = (PreferenceRepositoryService) context.getService(ref);
+		ContextManagerService contextService = new ContextManagerService(prefRepo);
 		ServiceRegistration registration = context.registerService(ContextManagerService.class.getName(), contextService, new Hashtable());
 		System.out.println("Mulai Context Manager");
-		
-		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		
-		//System.out.println("masukan anda : "+br.readLine());
+		//contextService.getSaran();
 	}
 	
 	/*

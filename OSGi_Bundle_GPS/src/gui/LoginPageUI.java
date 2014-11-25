@@ -62,7 +62,7 @@ public class LoginPageUI extends JFrame{
 //		daftarTombol.setBounds(200,275,100,25);
 //		panelUtama.add(daftarTombol);
 		
-		String[] userB = {"Judin Sang Admin", "Luqman Sang User Biasa"};
+		String[] userB = {"Izza", "Bela","Luqman","Judin"};
 		user = new JComboBox<String>(userB);
 		user.setBounds(165, 150, 150, 30);
 		panelUtama.add(user);

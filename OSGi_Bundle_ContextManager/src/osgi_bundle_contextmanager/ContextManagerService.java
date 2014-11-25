@@ -8,6 +8,8 @@ import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import osgi_bundle_preferencerepository.PreferenceRepositoryService;
+
 public class ContextManagerService {
 	private ArrayList<ItemOfInterest> iois;
 	private String currentLocation = "";
@@ -16,9 +18,10 @@ public class ContextManagerService {
 	private String waktu = "";
 	private String user = "";
 	private String saran = "";
+	private PreferenceRepositoryService prefRepo;
 	
-	
-	public ContextManagerService(){
+	public ContextManagerService(PreferenceRepositoryService prefRepo){
+		this.prefRepo = prefRepo;
 		iois = new ArrayList<ItemOfInterest>();
 		BufferedReader br = null;
 		String json = "";
@@ -193,7 +196,6 @@ public class ContextManagerService {
 		return  direction;
 	}
 
-	
 	public String getCurrentLocation() {
 		return currentLocation;
 	}
@@ -243,7 +245,10 @@ public class ContextManagerService {
 	}
 
 	public String getSaran() {
-		return saran;
+		//Izza,25,hujan,12:00
+		String query = user+","+temperatur+","+cuaca+","+waktu;
+		return prefRepo.getPreference(query);
+		//return saran;
 	}
 
 	public void setSaran(String saran) {
