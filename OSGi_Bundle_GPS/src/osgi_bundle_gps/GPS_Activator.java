@@ -1,16 +1,20 @@
 package osgi_bundle_gps;
 
+import gui.LoginPageUI;
+
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Hashtable;
-import osgi_bundle_contextmanager.ContextManagerService;
+
+import javax.swing.JFrame;
+
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.util.tracker.ServiceTracker;
 import org.osgi.util.tracker.ServiceTrackerCustomizer;
+
+import osgi_bundle_contextmanager.ContextManagerService;
 
 //import servis
 /**
@@ -21,6 +25,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  */
 public class GPS_Activator implements BundleActivator {
 	private GPS_Service gps_service;
+	private ContextManagerService cms;
 	private BufferedReader bf;
 	private static BundleContext konteks;
 	private ServiceTracker tracker;
@@ -37,6 +42,7 @@ public class GPS_Activator implements BundleActivator {
 			public Object addingService(ServiceReference reference) {
 				// TODO Auto-generated method stub
 				ContextManagerService cm_service = (ContextManagerService) konteks.getService(reference);
+				cms = cm_service;
 				if(gps_service == null)
 				{
 					gps_service = new GPS_Service(cm_service);
@@ -87,7 +93,11 @@ public class GPS_Activator implements BundleActivator {
 		System.out.println("Exit");
 		int pilihan = Integer.parseInt(bf.readLine());
 		eksekusiPilihan(pilihan);*/
-		gps_service.printTempatMenarikAll();
+
+		JFrame layar = new LoginPageUI(cms, gps_service);
+		layar.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                layar.setResizable(false);
+		layar.setVisible(true);
 	}
 	
 	/*
