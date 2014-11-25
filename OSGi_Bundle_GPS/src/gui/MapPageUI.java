@@ -59,7 +59,7 @@ public class MapPageUI extends JFrame{
 				// TODO Auto-generated method stub
 				if(mainPUI == null)
 				{
-					mainPUI = new MainPageUI();
+					mainPUI = new MainPageUI("");
 					mainPUI.setVisible(true);
 				}
 				dispose();

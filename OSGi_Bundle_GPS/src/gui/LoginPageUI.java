@@ -50,7 +50,7 @@ public class LoginPageUI extends JFrame{
 				// TODO Auto-generated method stub
 				if(mainPUI == null)
 				{
-					mainPUI = new MainPageUI();
+					mainPUI = new MainPageUI(user.getSelectedItem().toString());
 					mainPUI.setVisible(true);
 				}
 				dispose();

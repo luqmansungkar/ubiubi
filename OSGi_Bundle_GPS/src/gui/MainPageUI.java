@@ -39,8 +39,9 @@ public class MainPageUI extends JFrame{
 	private String[] pilSaran;
 	private JButton detil;
 	
-	public MainPageUI()
+	public MainPageUI(String namaU)
 	{
+		this.namaU = namaU;
 		setTitle("Tour Guide");
 		setBounds(100, 100, 500, 500);
 		panelUtama = new JPanel();
@@ -52,7 +53,6 @@ public class MainPageUI extends JFrame{
 		judulL.setBounds(200,10,100,50);
 		panelUtama.add(judulL);
 		
-		namaU = "Judin";
 		namaL = new JLabel("Hai, "+namaU);
 		namaL.setBounds(25, 100, 100, 25);
 		panelUtama.add(namaL);
