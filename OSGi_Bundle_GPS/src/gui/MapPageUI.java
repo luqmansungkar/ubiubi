@@ -2,19 +2,23 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import osgi_bundle_contextmanager.ContextManagerService;
-import osgi_bundle_gps.GPS_Service;
+import osgi_bundle_contextmanager.ItemOfInterest;
 
 public class MapPageUI extends JFrame{
 	private JPanel panelUtama;
@@ -32,16 +36,22 @@ public class MapPageUI extends JFrame{
 	private JButton cari;
 	private JButton semua;
 	
-	private JTextField deskripsiTF;
+	private JTextArea deskripsiTF;
 	private JComboBox<String> tempatMenarikCB;
 //	private String[] pilTempatMenarik;
 	private ArrayList<String> pilTempatMenarik;
 	private MainPageUI mainPUI;
 	private ContextManagerService cms;
 	
+	private JLabel lokasiL;
+	private String lokasiU;
+	
+	private Timer timer;
+	
 	public MapPageUI(final ContextManagerService cm_service, final String namaU)
 	{
 		this.cms = cm_service;
+		timer = new Timer();
 		
 		setTitle("Peta Kota Jakmania");
 		setBounds(100, 100, 500, 500);
@@ -50,13 +60,31 @@ public class MapPageUI extends JFrame{
 		setContentPane(panelUtama);
 		panelUtama.setLayout(null);
 		
+		lokasiU = cms.getCurrentLocation();
+		
+		lokasiL = new JLabel("Posisi anda saat ini di kota  " + lokasiU);
+		lokasiL.setBounds(30, 35, 200, 25);
+		panelUtama.add(lokasiL);
+		
 		pilTempatMenarik = cm_service.getAllItemOfInterest();
 		System.out.println("size:"+pilTempatMenarik.size());
 		String[] pilTempatMenarik2 = new String[pilTempatMenarik.size()];
 		pilTempatMenarik2 = pilTempatMenarik.toArray(pilTempatMenarik2);
 		tempatMenarikCB = new JComboBox<String>(pilTempatMenarik2);
-		tempatMenarikCB.setBounds(50,300,300,25);
+		tempatMenarikCB.setBounds(50,300,400,25);
 		panelUtama.add(tempatMenarikCB);
+		
+		
+		tempatMenarikCB.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ItemOfInterest ioi = cms.getIoi(tempatMenarikCB.getSelectedItem().toString());
+				deskripsiTF.setText(cms.getIoiInformation(tempatMenarikCB.getSelectedItem().toString())+
+						"\n\n"+ioi.getNama()+cms.getArah(cms.getCurrentLocation(), ioi.getLokasi()));
+			}
+		});
 		
 		
 		
@@ -200,24 +228,34 @@ public class MapPageUI extends JFrame{
 		});
 		panelUtama.add(iKota);
 		
-		cari = new JButton("Lihat");
+		/*cari = new JButton("Lihat");
 		cari.setBounds(350, 300, 100, 25);
 		cari.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				deskripsiTF.setText(cms.getIoiInformation(tempatMenarikCB.getSelectedItem().toString()));
+				ItemOfInterest ioi = cms.getIoi(tempatMenarikCB.getSelectedItem().toString());
+				deskripsiTF.setText(cms.getIoiInformation(tempatMenarikCB.getSelectedItem().toString())+
+						"\n\n"+ioi.getNama()+cms.getArah(cms.getCurrentLocation(), ioi.getLokasi()));
 			}
 		});
-		panelUtama.add(cari);
+		panelUtama.add(cari);*/
 		
 		
 		
-		deskripsiTF = new JTextField("detail");
-		deskripsiTF.setBounds(50, 350, 400, 50);
+		deskripsiTF = new JTextArea("detail");
+		deskripsiTF.setBounds(50, 350, 400, 80);
 		deskripsiTF.setEditable(false);
+		deskripsiTF.setLineWrap(true);
+		deskripsiTF.setWrapStyleWord(true);
 		panelUtama.add(deskripsiTF);
+		
+		ItemOfInterest ioi2 = cms.getIoi(tempatMenarikCB.getSelectedItem().toString());
+		deskripsiTF.setText(cms.getIoiInformation(tempatMenarikCB.getSelectedItem().toString())+
+				"\n\n"+ioi2.getNama()+cms.getArah(cms.getCurrentLocation(), ioi2.getLokasi()));
+		
+		run();
 	}
 	
 	public void pilihKota(String kota)
@@ -227,5 +265,19 @@ public class MapPageUI extends JFrame{
 		pilTempatMenarik2 = tempat.toArray(pilTempatMenarik2);
 		tempatMenarikCB.setModel(new DefaultComboBoxModel<String>(pilTempatMenarik2));
 		deskripsiTF.setText(cms.getIoiInformation(kota));
+		
+		ItemOfInterest ioi2 = cms.getIoi(tempatMenarikCB.getSelectedItem().toString());
+		deskripsiTF.setText(cms.getIoiInformation(tempatMenarikCB.getSelectedItem().toString())+
+				"\n\n"+ioi2.getNama()+cms.getArah(cms.getCurrentLocation(), ioi2.getLokasi()));
+	}
+	
+	public void run(){
+		timer.schedule(new TimerTask(){
+			public void run() {
+				lokasiU = cms.getCurrentLocation();
+				
+				lokasiL.setText("Posisi anda saat ini di kota  " + lokasiU);
+			}
+		},0,5000);
 	}
 }

@@ -70,6 +70,15 @@ public class ContextManagerService {
 		return info;
 	}
 	
+	public ItemOfInterest getIoi(String nama){
+		for (int i = 0; i < iois.size(); i++) {
+			if (iois.get(i).getNama().equals(nama)) {
+				return iois.get(i);
+			}
+		}
+		return null;
+	}
+	
 	public ArrayList<String> getAllItemOfInterest(){
 		ArrayList<String> hasil = new ArrayList<String>();
 		for (int i = 0; i < iois.size(); i++) {
@@ -79,8 +88,8 @@ public class ContextManagerService {
 	}
 	
 	public String getArah(String lokasi, String tujuan){
-		String direction = tujuan+" berada di ";
-		
+		//String direction = tujuan+" berada di ";
+		String direction = " berada di ";
 		HashMap<String, String> listArah = new HashMap<String, String>();
 		
 		switch (lokasi) {
