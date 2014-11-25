@@ -26,7 +26,7 @@ public class LoginPageUI extends JFrame{
 	
 	private MainPageUI mainPUI;
 //	public LoginPageUI(ContextManagerService cm_service, GPS_Service gps_service)
-	public LoginPageUI(final ContextManagerService cms, final GPS_Service gps)
+	public LoginPageUI(final ContextManagerService cms)
 	{
 		this.cms = cms;
 		this.gps = gps;
@@ -56,7 +56,7 @@ public class LoginPageUI extends JFrame{
 				if(mainPUI == null)
 				{
 					
-					mainPUI = new MainPageUI(user.getSelectedItem().toString(), cms, gps);
+					mainPUI = new MainPageUI(user.getSelectedItem().toString(), cms);
 					mainPUI.setVisible(true);
 				}
 				dispose();
