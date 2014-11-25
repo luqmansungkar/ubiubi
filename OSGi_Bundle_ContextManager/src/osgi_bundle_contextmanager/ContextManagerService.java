@@ -241,6 +241,7 @@ public class ContextManagerService {
 	}
 
 	public void setUser(String user) {
+		System.out.println("User:"+user);
 		this.user = user;
 	}
 
@@ -255,7 +256,21 @@ public class ContextManagerService {
 		this.saran = saran;
 	}
 
-	
+	public ArrayList<String> getLokasiBySaran(String saran, String kota){
+		ArrayList<String> hasil = new ArrayList<String>();
+		
+		for (int i = 0; i < iois.size(); i++) {
+			if (iois.get(i).getLokasi().equals(kota)) {
+				for (int j = 0; j < iois.get(i).getServices().size(); j++) {
+					if (iois.get(i).getServices().get(j).equals(saran)) {
+						hasil.add(iois.get(i).getServices().get(j));
+					}
+				}
+			}
+		}
+		System.out.println("saran:"+hasil.toString());
+		return hasil;
+	}
 	
 	/*
 	 * mengirim saran ke gps(user pref) sx: jika context sarankan service

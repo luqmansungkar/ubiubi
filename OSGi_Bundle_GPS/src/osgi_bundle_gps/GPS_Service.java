@@ -2,6 +2,8 @@ package osgi_bundle_gps;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import osgi_bundle_contextmanager.ContextManagerService;
 
@@ -10,13 +12,16 @@ public class GPS_Service extends Thread {
 	private boolean isUse;
 	private ContextManagerService CM_Service;
 	
+	private Timer timer;
+	
 	public GPS_Service (ContextManagerService CM_Service_new)
 	{
+		timer = new Timer();
 		this.CM_Service = CM_Service_new;
-		this.lokasi = 3;
+		this.lokasi = 0;
 		this.isUse = true;
 		CM_Service.setCurrentLocation(this.getLokasi());
-		//run();
+		run();
 	}
 	
 	/*
@@ -102,21 +107,15 @@ public class GPS_Service extends Thread {
 		}
 	}
 	
-	public void run ()
-	{
-		while(isUse && (CM_Service!=null))
-		{
-			PindahLokasi();
-			CM_Service.setCurrentLocation(this.getLokasi());
-			
-			try {
-				Thread.sleep(10000);
-			} catch (Exception e) {
-				// TODO: handle exception
-				e.printStackTrace();
+	public void run(){
+		timer.schedule(new TimerTask(){
+			public void run() {
+				PindahLokasi();
+				CM_Service.setCurrentLocation(getLokasi());
+				System.out.println("saran:"+CM_Service.getSaran());
+				CM_Service.getLokasiBySaran(CM_Service.getSaran(), getLokasi());
 			}
-			
-		}
+		},0,10000);
 	}
 	
 	public void printTempatMenarikAll()

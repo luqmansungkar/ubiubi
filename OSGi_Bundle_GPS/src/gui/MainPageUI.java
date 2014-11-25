@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -142,21 +143,24 @@ public class MainPageUI extends JFrame{
 		detil = new JButton("Lihat");
 		detil.setBounds(350, 350, 100, 25);
 		panelUtama.add(detil);
-		//run();
+		run();
 	}
 	
 	public void run(){
 		timer.schedule(new TimerTask(){
 			public void run() {
+				lokasiU = cms.getCurrentLocation();
+				lokasiL.setText("Anda lagi ada di kota " + lokasiU);
 				suhuTF.setText(cms.getTemperatur());
 				jamTF.setText(cms.getWaktu());
 				
 				ArrayList<String> tempat = cms.getItemOfInterest(cms.getCurrentLocation());
 				String[] pilTempatMenarik2 = new String[tempat.size()];
 				pilTempatMenarik2 = tempat.toArray(pilTempatMenarik2);
-				saranCB = new JComboBox<String>(pilTempatMenarik2);
+				saranCB.setModel(new DefaultComboBoxModel<String>(pilTempatMenarik2));
+				
 			}
-		},0,10000);
+		},0,5000);
 	}
 
 }
