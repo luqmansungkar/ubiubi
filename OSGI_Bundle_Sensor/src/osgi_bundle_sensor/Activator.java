@@ -11,17 +11,22 @@ import osgi_bundle_contextmanager.*;
 
 public class Activator implements BundleActivator {
 	
+	SensorService sensorService;
 	/*
 	 * (non-Javadoc)
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext context) throws Exception {
-		
+		System.out.println("Jalankan Bundle Sensor");
 		ServiceReference ref = context.getServiceReference(ContextManagerService.class.getName());
 		
-		SensorService sensorService = new SensorService((ContextManagerService) context.getService(ref));
+		ContextManagerService cms = (ContextManagerService) context.getService(ref);
+		//System.out.println(cms.getArah("A", "B"));
+		
+		sensorService = new SensorService(cms);
 		ServiceRegistration registration = context.registerService(SensorService.class.getName(), sensorService, new Hashtable());
-		System.out.println("Jalankan Bundle Sensor");
+		
+		
 	}
 	
 	/*

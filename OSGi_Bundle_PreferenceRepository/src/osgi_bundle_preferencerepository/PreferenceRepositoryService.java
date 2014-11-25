@@ -4,17 +4,20 @@ import java.util.Vector;
 import java.io.File;
 import java.io.FileReader;
 import java.io.BufferedReader;
+
+import osgi_bundle_contextmanager.ContextManagerService;
 public class PreferenceRepositoryService {
 	File fi;
 	BufferedReader br;
 	Vector<EntryPreference> ep;
+	ContextManagerService cms;
 	
 	public PreferenceRepositoryService(){
 		loadPreferenceDatabase();
 	}
 	
 	public void loadPreferenceDatabase(){
-		fi = new File("input2.txt");
+		fi = new File("file/input2.txt");
 		ep = new Vector<EntryPreference>();
 		try{
 			br = new BufferedReader(new FileReader(fi));
