@@ -31,7 +31,8 @@ public class RegistrasiPageUI extends JFrame{
 		String[] pilCuacaCB = {"Cerah", "Berawan","Hujan","Badai"};
 		String[] pilKeinginanCB = {"Hiburan","Olahraga", "Wisata Pemerintah"};
 		setTitle("Halaman Pendaftaran");
-		setBounds(100, 100, 500, 350);
+		setBounds(100, 100, 500, 500);
+		
 		panelUtama = new JPanel();
 		panelUtama.setBorder(new EmptyBorder(5,5,5,5));
 		setContentPane(panelUtama);

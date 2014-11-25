@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Button;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,11 +22,12 @@ public class LoginPageUI extends JFrame{
 	private JButton daftarTombol;
 	private JComboBox<String> user;
 	
+	private MainPageUI mainPUI;
 //	public LoginPageUI(ContextManagerService cm_service, GPS_Service gps_service)
 	public LoginPageUI()
 	{
 		setTitle("Halaman Login");
-		setBounds(100, 100, 500, 350);
+		setBounds(100, 100, 500, 500);
 		panelUtama = new JPanel();
 		panelUtama.setBorder(new EmptyBorder(5,5,5,5));
 		setContentPane(panelUtama);
@@ -40,6 +43,19 @@ public class LoginPageUI extends JFrame{
 		
 		masukTombol = new JButton("Masuk");
 		masukTombol.setBounds(185,185,100,25);
+		masukTombol.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				if(mainPUI == null)
+				{
+					mainPUI = new MainPageUI();
+					mainPUI.setVisible(true);
+				}
+				dispose();
+			}
+		});
 		panelUtama.add(masukTombol);
 		
 //		daftarTombol = new JButton("Daftar");
