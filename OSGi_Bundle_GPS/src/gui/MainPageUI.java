@@ -42,7 +42,7 @@ public class MainPageUI extends JFrame{
 	private String[] pilSaran;
 	private JButton detil;
 	
-	public MainPageUI(String namaU, ContextManagerService cms, GPS_Service gps)
+	public MainPageUI(final String namaU, final ContextManagerService cms)
 	{
 		this.namaU = namaU;
 		setTitle("Tour Guide");
