@@ -95,7 +95,21 @@ public class MainPageUI extends JFrame{
 		cuacaL = new JLabel();
 		cuacaL.setBounds(210, 240, 75, 75);
 //		System.out.print(getClass().getResource("/"));
-		cuacaL.setIcon(new ImageIcon(getClass().getResource("/image/sunny5.png")));
+		switch (cms.getCuaca()) {
+		case "berawan":
+			cuacaL.setIcon(new ImageIcon(getClass().getResource("/image/sunny5.png")));
+			break;
+		case "hujan":
+			cuacaL.setIcon(new ImageIcon(getClass().getResource("/image/rainy12.png")));
+			break;
+		case "cerah":
+			cuacaL.setIcon(new ImageIcon(getClass().getResource("/image/sun79.png")));
+			break;
+
+		default:
+			break;
+		}
+		
 		panelUtama.add(cuacaL);
 		
 		
@@ -158,6 +172,21 @@ public class MainPageUI extends JFrame{
 				String[] pilTempatMenarik2 = new String[tempat.size()];
 				pilTempatMenarik2 = tempat.toArray(pilTempatMenarik2);
 				saranCB.setModel(new DefaultComboBoxModel<String>(pilTempatMenarik2));
+				
+				switch (cms.getCuaca()) {
+				case "berawan":
+					cuacaL.setIcon(new ImageIcon(getClass().getResource("/image/sunny5.png")));
+					break;
+				case "hujan":
+					cuacaL.setIcon(new ImageIcon(getClass().getResource("/image/rainy12.png")));
+					break;
+				case "cerah":
+					cuacaL.setIcon(new ImageIcon(getClass().getResource("/image/sun79.png")));
+					break;
+
+				default:
+					break;
+				}
 				
 			}
 		},0,5000);
