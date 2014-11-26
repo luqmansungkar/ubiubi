@@ -1,0 +1,6 @@
+java -jar org.eclipse.osgi_3.10.1.v20140909-1633.jar -console -consolelog -configuration=configuration\config.ini
+
+install file:OSGi_Bundle_PreferenceRepository_1.0.0.201411261605.jar
+install file:OSGi_Bundle_ContextManager_1.0.0.201411261605.jar
+install file:OSGI_Bundle_Sensor_1.0.0.201411261605.jar
+install file:OSGi_Bundle_GPS_1.0.0.201411261605.jar
