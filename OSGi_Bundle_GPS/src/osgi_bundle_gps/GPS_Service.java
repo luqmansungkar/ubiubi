@@ -1,9 +1,13 @@
 package osgi_bundle_gps;
 
+import gui.LoginPageUI;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.swing.JFrame;
 
 import osgi_bundle_contextmanager.ContextManagerService;
 
@@ -21,6 +25,7 @@ public class GPS_Service extends Thread {
 		this.lokasi = 0;
 		this.isUse = true;
 		CM_Service.setCurrentLocation(this.getLokasi());
+		
 		run();
 	}
 	

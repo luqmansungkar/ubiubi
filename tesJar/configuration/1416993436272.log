@@ -1,0 +1,37 @@
+!SESSION 2014-11-26 16:17:16.163 -----------------------------------------------
+eclipse.buildId=unknown
+java.version=1.8.0
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -configuration=configuration\config.ini
+Command-line arguments:  -console -consolelog -configuration=configuration\config.ini
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.604
+!MESSAGE Bundle reference:file:dependencies/org.eclipse.equinox.console_1.0.100.v20130429-0953.jar@start not found.
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.620
+!MESSAGE Bundle reference:file:dependencies/org.eclipse.core.jobs_3.5.300.v20130429-1813.jar@start not found.
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.620
+!MESSAGE Bundle reference:file:dependencies/org.eclipse.equinox.registry_3.5.301.v20130717-1549.jar@start not found.
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.620
+!MESSAGE Bundle reference:file:dependencies/org.eclipse.equinox.preferences_3.5.100.v20130422-1538.jar@start not found.
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.620
+!MESSAGE Bundle reference:file:dependencies/org.eclipse.core.contenttype_3.4.200.v20130326-1255.jar@start not found.
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.635
+!MESSAGE Bundle reference:file:dependencies/org.eclipse.equinox.app_1.3.100.v20130327-1442.jar@start not found.
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.635
+!MESSAGE Bundle reference:file:dependencies/org.eclipse.core.runtime_3.9.0.v20130326-1255.jar@start not found.
+
+!ENTRY org.eclipse.osgi 4 0 2014-11-26 16:17:16.760
+!MESSAGE Could not find bundle: org.eclipse.equinox.console
+!STACK 0
+org.osgi.framework.BundleException: Could not find bundle: org.eclipse.equinox.console
+	at org.eclipse.core.runtime.internal.adaptor.ConsoleManager.checkForConsoleBundle(ConsoleManager.java:58)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.startup(EclipseStarter.java:331)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:231)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.main(EclipseStarter.java:208)
